@@ -8,21 +8,20 @@
 
 1. Clonar el repositorio:
 	git clone https://github.com/usuario/mvc-minimo.git
-	cd mvc-minimo
+	comandos: cd mvc-minimo
 	
-2. Levantar los contenedores:
-	docker compose up -d --build
+3. Levantar los contenedores:
+	comandos: docker compose up -d --build
 	
 
-3. Acceder en el navegador:
+4. Acceder en el navegador:
 	http://localhost:8080
 
-4. Probar una ruta amigable:
+5. Probar una ruta amigable:
 	http://localhost:8080/usuarios/ver/1
 
-5. Detener los contenedores:
-	bash
-	docker compose down
+6. Detener los contenedores:
+	Comandos: docker compose down
 	
 
 ## Estructura

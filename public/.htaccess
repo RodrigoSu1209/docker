@@ -1,0 +1,15 @@
+# Aplicar estas reglas solo si el módulo mod_rewrite está disponible.
+<IfModule mod_rewrite.c>
+	# Activar la reescritura de URL desde la raíz del sitio.
+	RewriteEngine On
+	RewriteBase /
+
+	# Dejar que Apache sirva directamente archivos y directorios existentes.
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	# Pasar la ruta a index.php y conservar los parámetros de consulta existentes.
+	RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
+
+# Evitar que Apache muestre el contenido de directorios sin página índice.
+Options -Indexes

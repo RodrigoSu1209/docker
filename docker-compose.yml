@@ -1,0 +1,36 @@
+services:
+	db:
+		image: mariadb:10.11
+		container_name: mvc-mariadb
+		restart: always
+		environment:
+			MARIADB_ROOT_PASSWORD: root_password_segura
+			MARIADB_DATABASE: mvc_db
+			MARIADB_USER: mvc_user
+			MARIADB_PASSWORD: mvc_pass123
+		volumes:
+			- db_data:/var/lib/mysql
+			- ./db_init:/docker-entrypoint-initdb.d
+		networks:
+			- red_mvc
+
+	apache:
+		build: .
+		container_name: mvc-apache
+		restart: always
+		ports:
+			- "8080:80"
+		volumes:
+			- ./public:/var/www/html
+			- ./app:/var/www/app
+			- ./config:/var/www/config
+		depends_on:
+			- db
+		networks:
+			- red_mvc
+
+volumes:
+	db_data:
+
+networks:
+	red_mvc:
